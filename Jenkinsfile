@@ -15,7 +15,7 @@ pipeline{
         }
         stage("Unit and Integration Tests"){
             steps{
-                decho "Running Unit and Integration tests using PyTest"
+                echo "Running Unit and Integration tests using PyTest"
             }
             post{
             
@@ -84,4 +84,3 @@ pipeline{
     }
     
  }
-
