@@ -22,13 +22,13 @@ pipeline{
                 success{
                     emailext to: "$RECIEVER",
                     subject:"Unit and Intergration Tests Successful",
-                    attachLog:true
+                    body:"Test",attachLog:true
 
                 }
                 failure{
                     emailext to: "$RECIEVER",
                     subject: "Unit and Intergration Tests Unsuccessful",
-                    attachLog:true
+                    body:"Test",attachLog:true
 
                     
                 }
@@ -49,13 +49,13 @@ pipeline{
                 success{
                     emailext to: "$RECIEVER",
                     subject:"Security Scan Successful",
-                    attachLog:true
+                    body:"Test",attachLog:true
 
                 }
                 failure{
                     emailext to: "$RECIEVER",
                     subject: "Security Scan Unsuccessful",
-                    attachLog:true
+                    body:"Test",attachLog:true
 
                     
                 }
