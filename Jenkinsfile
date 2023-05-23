@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment{
         STAGING_ENV = "SIT753_Staging AWS EC2 instance"
-        PROD_ENV = "SIT753_Producation AWS EC2 instance"
+        PROD_ENV = "SIT753_Production AWS EC2 instance"
         RECIEVER = "kaustavkrbaruah@gmail.com"
 
     }
@@ -20,15 +20,16 @@ pipeline{
             post{
             
                 success{
-                    mail to: "$RECIEVER",
+                    emailext to: "$RECIEVER",
                     subject:"Tests Successful",
-                    body: $BUILD_LOG
+                    body: "Tests", attachLog:true
 
                 }
                 failure{
-                    mail to: "$RECIEVER",
+                    emailext to: "$RECIEVER",
                     subject: "Tests Unsuccessful",
-                    body: $BUILD_LOG
+                    body: "Tests", attachLog:true
+
                     
                 }
             }
