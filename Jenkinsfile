@@ -42,7 +42,7 @@ pipeline{
         }
         stage("Security Scan"){
             steps{
-                decho "Scanning for Vulnerabilities using Probely"
+                echo "Scanning for Vulnerabilities using Probely"
             }
             post{
             
