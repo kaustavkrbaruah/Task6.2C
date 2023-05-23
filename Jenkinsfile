@@ -1,32 +1,69 @@
 pipeline{
     agent any
+    environment{
+        STAGING_ENV = "SIT753_Staging AWS EC2 instance"
+        PROD_ENV = "SIT753_Producation AWS EC2 instance"
+        RECIEVER = "kaustavkrbaruah@gmail.com"
+
+    }
     stages{
-        stage("A"){
+        stage("Build"){
             steps{
-                echo "========executing A========"
+                echo "Building code using PyInstaller"
+            }
+    
+        }
+        stage("Unit and Integration Tests"){
+            steps{
+                echo "Running Unit and Integration tests using PyTest"
             }
             post{
-                always{
-                    echo "========always========"
-                }
+            
                 success{
-                    echo "========A executed successfully========"
+                    mailto: "$RECIEVER"
+                    subject: "Tests Successful"
+                    body: attachLog: true
+
                 }
                 failure{
-                    echo "========A execution failed========"
+                    mailto: "$RECIEVER"
+                    subject: "Tests Unsuccessful"
+                    body: attachLog: true
+                    
                 }
             }
         }
+        stage("Code Analysis"){
+            steps{
+                echo "Analysing code using FindBugs"
+            }
+            
+        }
+        stage("Security Scan"){
+            steps{
+                echo "Scanning for Vulnerabilities using Probely"
+            }
+            
+        }
+        stage("Deploy to Staging"){
+            steps{
+                echo "Deploying application to $STAGING_ENV"
+            }
+            
+        }
+        stage("Integration Tests on Staging"){
+            steps{
+                echo "Running integration test using AWS Device Farm"
+            }
+            
+        }
+        stage("Deploy to Production"){
+            steps{
+                echo "Deploying applicaiton to $PROD_ENV"
+            }
+            
+        }
+        
     }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
-        }
-    }
-}
+    
+ }
