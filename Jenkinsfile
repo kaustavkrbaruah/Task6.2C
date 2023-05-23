@@ -22,7 +22,7 @@ pipeline{
                 success{
                     emailext to: "$RECIEVER",
                     subject:"Tests Successful",
-                    body: "Tests", attachLog:true
+                    body: "Tests" attachLog:true
 
                 }
                 failure{
