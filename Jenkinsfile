@@ -20,13 +20,13 @@ pipeline{
             post{
             
                 success{
-                    mailto: "$RECIEVER",
+                    mail to: "$RECIEVER",
                     subject:"Tests Successful",
                     body: attachLog:true
 
                 }
                 failure{
-                    mailto: "$RECIEVER",
+                    mail to: "$RECIEVER",
                     subject: "Tests Unsuccessful",
                     body: attachLog: true
                     
