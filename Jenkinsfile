@@ -15,19 +15,19 @@ pipeline{
         }
         stage("Unit and Integration Tests"){
             steps{
-                echo "Running Unit and Integration tests using PyTest"
+                decho "Running Unit and Integration tests using PyTest"
             }
             post{
             
                 success{
                     emailext to: "$RECIEVER",
-                    subject:"Tests Successful",
+                    subject:"Unit and Intergration Tests Successful",
                     body: "Tests", attachLog:true
 
                 }
                 failure{
                     emailext to: "$RECIEVER",
-                    subject: "Tests Unsuccessful",
+                    subject: "Unit and Intergration Tests Unsuccessful",
                     body: "Tests", attachLog:true
 
                     
@@ -68,4 +68,3 @@ pipeline{
     }
     
  }
-
