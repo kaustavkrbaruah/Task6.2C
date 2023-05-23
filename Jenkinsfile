@@ -22,13 +22,13 @@ pipeline{
                 success{
                     mail to: "$RECIEVER",
                     subject:"Tests Successful",
-                    attachLog: true
+                    body: $BUILD_LOG
 
                 }
                 failure{
                     mail to: "$RECIEVER",
                     subject: "Tests Unsuccessful",
-                    attachLog: true
+                    body: $BUILD_LOG
                     
                 }
             }
